@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { IoSearch } from "react-icons/io5";
+import { RiShoppingBagLine } from "react-icons/ri";
 
 const Navbar = () => {
     const navItems = [
@@ -69,6 +71,13 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
+          <div className=' px-2 '>
+         <div className='flex justify-around mx-3' >
+          <RiShoppingBagLine className='text-2xl' />
+          <IoSearch className='text-2xl' />
+          
+         </div>
+          </div>
           <a className="btn btn-outline btn-primary">Appointment</a>
         </div>
           </div>
