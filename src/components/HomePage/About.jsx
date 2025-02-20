@@ -33,7 +33,7 @@ const About = () => {
               ></Image>
             </div>
           </div>
-          <div className="space-y-5">
+          <div className="space-y-2">
             <h1 className="text-primary">About Us</h1>
             <h1 className="text-5xl">
               We are qualified & of experience in this field
