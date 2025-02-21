@@ -14,6 +14,13 @@ const page = () => {
        
         };
         console.log(newUser);
+        const resp = await fetch('http://localhost:3000/signup',{
+          method: 'POST',
+          body : JSON.stringify(newUser),
+          headers : {
+              "content-type" : 'application/json'
+          }
+      })
    };
     return (
         <div className="hero bg-base-200 min-h-screen">
@@ -46,7 +53,8 @@ const page = () => {
         
         </div>
         <div className="form-control mt-6">
-          <button className="btn btn-primary">Sign Up</button>
+         
+          <button className="btn btn-primary" type="submit">Sign Up</button>
         </div>
 <div className='text-center'>
 <p>Or Sign in with</p>

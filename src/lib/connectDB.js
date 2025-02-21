@@ -13,8 +13,8 @@ try{
         serverApi: {
             version: ServerApiVersion.v1,
             strict: true,
-            deprecationErrors: true
-        },
+            deprecationErrors: true,
+        }
     });
     db = client.db('car-doctor')
     return db
