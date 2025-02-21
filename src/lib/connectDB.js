@@ -8,7 +8,7 @@ if(db) return db
 try{
     // const uri = process.env.NEXT_PUBLIC_MONGODB_URI
     // const uri = "mongodb+srv://next-js:<db_password>@cluster0.edet6.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-    const uri = "mongodb+srv://next-js:KC2iU2VyhHgdFdkt@cluster0.edet6.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+    const uri = "mongodb+srv://car-doctor-pro:IAsaNIGmCbgvUS8W@cluster0.edet6.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
     const client = new MongoClient(uri, {
         serverApi: {
             version: ServerApiVersion.v1,
@@ -25,6 +25,5 @@ catch(error){
 }
 export default connectDB
 
-// id: next-js
-// pass: rnFWVUWRKSxUDXMd
-// pass: KC2iU2VyhHgdFdkt
+// id: car-doctor-pro
+// pass: IAsaNIGmCbgvUS8W
