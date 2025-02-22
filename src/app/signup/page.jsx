@@ -21,6 +21,10 @@ const page = () => {
               "content-type" : 'application/json'
           }
       })
+      console.log(resp)
+      if(resp.status === 200){
+        event.target.reset();
+      }
    };
     return (
         <div className="hero bg-base-200 min-h-screen">
