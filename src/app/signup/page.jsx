@@ -14,7 +14,7 @@ const page = () => {
        
         };
         console.log(newUser);
-        const resp = await fetch('http://localhost:3000/signup',{
+        const resp = await fetch('http://localhost:3000/signup/api',{
           method: 'POST',
           body : JSON.stringify(newUser),
           headers : {
