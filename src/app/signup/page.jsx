@@ -1,10 +1,14 @@
 "use client"
+
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import { FaFacebook, FaLinkedin } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
+import Swal from 'sweetalert2';
 
 const page = () => {
+const route = useRouter();
       const handleSignUp = async(event) => {
         event.preventDefault();
         const newUser ={
@@ -24,6 +28,17 @@ const page = () => {
       console.log(resp)
       if(resp.status === 200){
         event.target.reset();
+        route.push('/')
+// sweet alert
+
+Swal.fire({
+  position: "top-end",
+  icon: "success",
+  title: "New User Created",
+  showConfirmButton: false,
+  timer: 1500
+});
+
       }
    };
     return (
