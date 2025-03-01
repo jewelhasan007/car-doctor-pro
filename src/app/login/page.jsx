@@ -1,10 +1,10 @@
 "use client"
 import Link from 'next/link';
 import React from 'react';
-import { FaFacebook, FaLinkedin } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
+
 import {signIn} from 'next-auth/react'
 import { useRouter } from 'next/navigation';
+import SocialSignIn from '@/components/shared/SocialSignIn';
 
 const page = () => {
 const route = useRouter();
@@ -53,15 +53,13 @@ console.log(resp)
 <div className='text-center'>
 <p>Or Sign in with</p>
 <div className='flex justify-center m-4 '>
-<button className='btn btn-outline rounded-full' ><FaFacebook className='mr-3' /></button>
-<button className='btn btn-outline rounded-full' ><FaLinkedin className='mr-3' /></button>
-<button className='btn btn-outline rounded-full' ><FcGoogle /></button>
-<button className='btn btn-outline rounded-full' ><FcGoogle /></button>
+<SocialSignIn></SocialSignIn>
 
 </div>
-<h5>not have account? <Link className='text-primary font-bold' href={'/signup'} >Sign Up</Link></h5>
+
 </div>
       </form>
+      <h5>not have account? <Link className='text-primary font-bold' href={'/signup'} >Sign Up</Link></h5>
     </div>
 
 {/* form end */}
