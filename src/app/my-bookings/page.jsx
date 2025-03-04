@@ -17,6 +17,20 @@ const page = () => {
     useEffect(()=>{
         loadData();
     },[session])
+
+    const handleDelete = async (id) =>{
+      const deleted = await fetch(`http://localhost:3000/my-bookings/api/delete-booking/${id}`, {
+        method : "DELETE"
+      })
+      console.log(deleted)
+      const resp = await deleted.json()
+      console.log(resp)
+      if(resp?.response?.deletedCount > 0) {
+        loadData();
+      }
+
+    }
+
     return (
         <div>
            <div className='container mx-auto'>
@@ -44,7 +58,7 @@ const page = () => {
             <td>
                 <div className='flex space-x-4'>
                     <button className='btn btn-primary'>Edit</button>
-                    <button className='btn btn-error'>Delete</button>
+                    <button onClick={()=> handleDelete(_id)} className='btn btn-error'>Delete</button>
                 </div>
 
             </td>
