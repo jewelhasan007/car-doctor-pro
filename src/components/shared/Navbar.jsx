@@ -103,6 +103,10 @@ const navItems = [
       path: "/blog"
   },
   {
+      title: "My Bookings",
+      path: "/my-bookings"
+  },
+  {
       title: "Contact",
       path: "/contact"
   },
