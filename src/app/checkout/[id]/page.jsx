@@ -21,6 +21,25 @@ const Checkout = ({params}) => {
 
         const handleBooking =async (event) =>{
             event.preventDefault();
+            const newBooking = {
+                email : data?.user?.email,
+                name : data?.user?.name,
+                address : event.target.address.value,
+                phone : event.target.phone.value,
+                date : event.target.date.value,
+                serviceTitle : title,
+                serviceId : _id,
+                price : price,
+            }
+            const resp = await fetch('http://localhost:3000/checkout/api/new-booking', {
+                method : "POST",
+                body : JSON.stringify(newBooking),
+                headers : {
+                    "content-type" : "application/json"
+                }
+            })
+
+
         }
         useEffect(()=>{
             loadService();
@@ -70,7 +89,7 @@ const Checkout = ({params}) => {
                     <label className='label'>
                     <span className='label-text'>Due Amount</span>
                     </label>
-                    <input defaultValue={price} type="text" name='amount' placeholder='$' className='input input-bordered' />
+                    <input defaultValue={price} readOnly type="text" name='amount' placeholder='$' className='input input-bordered' />
                 </div>
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>

@@ -28,9 +28,7 @@ const page = async ({params}) => {
        
             <Image className='text-center border rounded-[15px]' src={img} width={200} height={200} alt={title}></Image>
             <div className='grid grid-cols-3 gap-10 border-emerald-400'>
-            <h1 className='text-blue-300'>Facility: {facility.map((facilityInd)=>(
-                <div key={facilityInd.name} className='m-3 p-3 '>{facilityInd.name}</div>
-            ))}</h1>
+          
             </div>
          
         </div>
