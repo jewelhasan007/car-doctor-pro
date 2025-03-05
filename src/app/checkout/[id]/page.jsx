@@ -3,6 +3,7 @@ import { getServicesDetails } from '@/services/getServices';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Checkout = ({params}) => {
     const today = new Date().toISOString().split('T')[0]
@@ -39,8 +40,11 @@ const Checkout = ({params}) => {
                 }
             })
 
+            const response = await resp?.json();
+            toast.success(response?.message)
+            event.target.reset() 
+        };
 
-        }
         useEffect(()=>{
             loadService();
         },[params])
