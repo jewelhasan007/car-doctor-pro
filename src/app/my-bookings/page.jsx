@@ -1,6 +1,7 @@
 "use client"
 import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 
 const page = () => {
 
@@ -27,6 +28,7 @@ const page = () => {
       console.log(resp)
       if(resp?.response?.deletedCount > 0) {
         loadData();
+      toast.success('Deleted successfully')
       }
 
     }

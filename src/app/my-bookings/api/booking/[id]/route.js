@@ -10,7 +10,7 @@ export const DELETE = async (request, {params}) =>{
 
        return Response.json({message: "deleted the bookings", response : resp})
     } catch (error) {
-        return Response.json({message: "deleted the bookings"})
+        return Response.json({message: "something went wrong"})
     }
 }
 
@@ -22,18 +22,18 @@ export const DELETE = async (request, {params}) =>{
 
 //        return Response.json({message: "deleted the bookings", response : resp})
 //     } catch (error) {
-//         return Response.json({message: "deleted the bookings"})
+//         return Response.json({message: "something went wrong"})
 //     }
 // }
 
-// export const GET = async (request, {params}) =>{
-//     const db = await connectDB();
-//     const bookingCollection = db.collection('new-bookings')
-//     try {
-//        const resp = await bookingCollection.findOne({_id: new ObjectId(params.id)});
+export const GET = async (request, {params}) =>{
+    const db = await connectDB();
+    const bookingCollection = db.collection('new-bookings')
+    try {
+       const resp = await bookingCollection.findOne({_id: new ObjectId(params.id)});
 
-//        return Response.json({message: "deleted the bookings", response : resp})
-//     } catch (error) {
-//         return Response.json({message: "deleted the bookings"})
-//     }
-// }
+       return Response.json({message: "booking found", response : resp})
+    } catch (error) {
+        return Response.json({message: "something went wrong"})
+    }
+}
