@@ -1,14 +1,13 @@
+import axios from 'axios'
 
 export const getServicesDB = async () =>{
-    const resp = await fetch('http://localhost:3000/services/api/get-all')
-    const data = resp.json()
-    return data
+    const resp = await axios.get('http://localhost:3000/services/api/get-all');
+    return resp.data;
 }
 
-
 export const getServicesDetails = async (id) =>{
-    const resp = await fetch(`http://localhost:3000/services/api/${id}`)
-    const service = resp.json()
-    return service
+    const resp = await axios.get(`http://localhost:3000/services/api/${id}`);
+ 
+    return resp.data;
 }
 
