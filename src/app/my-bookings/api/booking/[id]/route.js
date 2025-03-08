@@ -17,14 +17,12 @@ export const DELETE = async (request, {params}) =>{
 export const PATCH = async (request, {params}) =>{
     const db = await connectDB();
     const bookingCollection = db.collection('new-bookings')
-    const {date, phone, address} = await request.json()
+    const updateDoc = await request.json()
     try {
        const resp = await bookingCollection.updateOne({_id: new ObjectId(params.id)},
     {
         $set : {
-            date,
-            phone,
-            address
+           ...updateDoc
         }
     },
     {
@@ -44,7 +42,7 @@ export const GET = async (request, {params}) =>{
     try {
        const resp = await bookingCollection.findOne({_id: new ObjectId(params.id)});
 
-       return Response.json({message: "booking found", response : resp})
+       return Response.json({message: "booking found", data : resp})
     } catch (error) {
         return Response.json({message: "something went wrong"})
     }

@@ -1,63 +1,47 @@
 "use client"
-import { getServicesDetails } from '@/services/getServices';
 import { useSession } from 'next-auth/react';
-import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 
-const Checkout = ({params}) => {
+const page = ({params}) => {
+    const {data} = useSession();
     const today = new Date().toISOString().split('T')[0]
-    const {data } = useSession();
-    const [service, setService] = useState({});
+    const [booking, setBooking] = useState([]);
+    const loadBooking = async () => {
+        const bookingDetails = await fetch (`http://localhost:3000/my-bookings/api/booking/${params.id}`)
+        const data = await bookingDetails.json();
+        console.log(data);
+        setBooking(data.data)
+        
+    }
+console.log(booking)
+useEffect(()=>{
+    loadBooking()
+},[params])
 
-    const loadService  = async () =>{
-    const details = await getServicesDetails(params.id);
-    console.log('details for checkout',details.services)
-    setService(details.services);
-    
+const handleUpdateBooking = async (event) =>{
+event.preventDefault();
+const updated = {
+    date: event.target.date.value,
+    phone: event.target.phone.value,
+    address: event.target.address.value,
 }
-    //    const details = await getServicesDetails(params.id);
-      const {_id, service_id, price, title, img, facility } = service || {};   
-      console.log('service array is=',service) 
-
-        const handleBooking =async (event) =>{
-            event.preventDefault();
-            const newBooking = {
-                email : data?.user?.email,
-                name : data?.user?.name,
-                address : event.target.address.value,
-                phone : event.target.phone.value,
-                date : event.target.date.value,
-                serviceTitle : title,
-                serviceId : _id,
-                price : price,
-            }
-            const resp = await fetch('http://localhost:3000/checkout/api/new-booking', {
-                method : "POST",
-                body : JSON.stringify(newBooking),
-                headers : {
-                    "content-type" : "application/json"
-                }
-            })
-
-            const response = await resp?.json();
-            toast.success(response?.message)
-            event.target.reset() 
-        };
-
-        useEffect(()=>{
-            loadService();
-        },[params])
-    return (
+    const resp = await fetch (`http://localhost:3000/my-bookings/api/booking/${params.id}`,{
+        method : "PATCH",
+        body: JSON.stringify(updated) ,
+        headers : {
+            "content-type" : "application/json",
+        }
+    })
+    console.log(resp)
+    if(resp.status === 200){
+        toast.success("Updated Succesfully")
+    }
+}
+return (
         <div className='bg-gray-400 '>
                <div className='flex justify-around'>
-               <div>
-               <h1>title: {title}</h1>
-           <h1> id: {_id}</h1>
-           <h1> service id: {service_id}</h1>
-           <h1> price:{price}</h1>
-           
-               </div>
+             <h1>Update Page</h1>
            {/* <Image src={img}
            alt='title'
            width={500}
@@ -67,7 +51,7 @@ const Checkout = ({params}) => {
            </Image> */}
                </div>
         <div className='my-12 bg-slate-300 p-12'>
-            <form onSubmit={handleBooking} >
+            <form onSubmit={handleUpdateBooking}  >
             <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
                 <div className='form-control'>
                     <label className='label'>
@@ -79,7 +63,7 @@ const Checkout = ({params}) => {
                     <label className='label'>
                     <span className='label-text'>Date</span>
                     </label>
-                    <input  type="date" name='date' placeholder='Date' className='input input-bordered' />
+                    <input defaultValue={booking.date} type="date" name='date' placeholder='Date' className='input input-bordered' />
                 </div>
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
@@ -93,7 +77,12 @@ const Checkout = ({params}) => {
                     <label className='label'>
                     <span className='label-text'>Due Amount</span>
                     </label>
-                    <input defaultValue={price} readOnly type="text" name='amount' placeholder='$' className='input input-bordered' />
+                    <input 
+                    defaultValue={booking.price} 
+                    readOnly type="text" 
+                    name='amount' 
+                    placeholder='$' 
+                    className='input input-bordered' />
                 </div>
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
@@ -101,13 +90,13 @@ const Checkout = ({params}) => {
                     <label className='label'>
                     <span className='label-text'>Your Phone</span>
                     </label>
-                    <input  type="text" name='phone' placeholder='Phone' className='input input-bordered' />
+                    <input defaultValue={booking.phone}  type="text" name='phone' placeholder='Phone' className='input input-bordered' />
                 </div>
                 <div className='form-control'>
                     <label className='label'>
                     <span className='label-text'>Your Address</span>
                     </label>
-                    <input type="text" name='address' placeholder='Your Address' className='input input-bordered' />
+                    <input defaultValue={booking.address} type="text" name='address' placeholder='Your Address' className='input input-bordered' />
                 </div>
             </div>
             <button className='btn btn-primary outline my-4'>Order Confirm</button>
@@ -117,4 +106,4 @@ const Checkout = ({params}) => {
     );
 };
 
-export default Checkout;
+export default page;
