@@ -8,7 +8,7 @@ const page = ({params}) => {
     const today = new Date().toISOString().split('T')[0]
     const [booking, setBooking] = useState([]);
     const loadBooking = async () => {
-        const bookingDetails = await fetch (`http://localhost:3000/my-bookings/api/booking/${params.id}`)
+        const bookingDetails = await fetch (`process.env.NEXT_PUBLIC_BASE_URL/my-bookings/api/booking/${params.id}`)
         const data = await bookingDetails.json();
         console.log(data);
         setBooking(data.data)
@@ -26,7 +26,7 @@ const updated = {
     phone: event.target.phone.value,
     address: event.target.address.value,
 }
-    const resp = await fetch (`http://localhost:3000/my-bookings/api/booking/${params.id}`,{
+    const resp = await fetch (`process.env.NEXT_PUBLIC_BASE_URL/my-bookings/api/booking/${params.id}`,{
         method : "PATCH",
         body: JSON.stringify(updated) ,
         headers : {

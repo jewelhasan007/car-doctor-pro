@@ -12,15 +12,15 @@ try {
 
      const existUser = await userCollection.findOne({email: newUser.email });
     if(existUser){
-        return Response.json({message : "User Exist"}, {status :  304});
+        return NextResponse.json({message : "User Exist"}, {status :  304});
     }
     const hashedPassword = bcrypt.hashSync(newUser.password, 14);
 
     const res = await userCollection.insertOne({...newUser, password : hashedPassword})
     
-    return Response.json({message: "user Create"}, {status:200});
+    return NextResponse.json({message: "user Create"}, {status:200});
 } catch (error) {
-    return Response.json({message : "something went wrong"}, {status: 500 })
+    return NextResponse.json({message : "something went wrong"}, {status: 500 })
 }
 }
 

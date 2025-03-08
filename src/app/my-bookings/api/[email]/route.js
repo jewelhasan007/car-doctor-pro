@@ -6,7 +6,7 @@ export const GET = async (request, {params}) =>{
     const bookingCollection = db.collection('new-bookings')
     try {
        const myBookings = await bookingCollection.find({email: params.email}).toArray();
-       return Response.json({myBookings})
+       return NextResponse.json({myBookings})
     } catch (error) {
      console.log(error)   
     }

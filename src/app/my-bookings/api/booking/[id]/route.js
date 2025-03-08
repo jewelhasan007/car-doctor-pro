@@ -8,9 +8,9 @@ export const DELETE = async (request, {params}) =>{
     try {
        const resp = await bookingCollection.deleteOne({_id: new ObjectId(params.id)});
 
-       return Response.json({message: "deleted the bookings", response : resp})
+       return NextResponse.json({message: "deleted the bookings", response : resp})
     } catch (error) {
-        return Response.json({message: "something went wrong"})
+        return NextResponse.json({message: "something went wrong"})
     }
 }
 
@@ -30,9 +30,9 @@ export const PATCH = async (request, {params}) =>{
     }
 );
 
-       return Response.json({message: "updated the bookings", response : resp})
+       return NextResponse.json({message: "updated the bookings", response : resp})
     } catch (error) {
-        return Response.json({message: "something went wrong"})
+        return NextResponse.json({message: "something went wrong"})
     }
 }
 
@@ -42,8 +42,8 @@ export const GET = async (request, {params}) =>{
     try {
        const resp = await bookingCollection.findOne({_id: new ObjectId(params.id)});
 
-       return Response.json({message: "booking found", data : resp})
+       return NextResponse.json({message: "booking found", data : resp})
     } catch (error) {
-        return Response.json({message: "something went wrong"})
+        return NextResponse.json({message: "something went wrong"})
     }
 }

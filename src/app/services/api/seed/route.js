@@ -7,7 +7,7 @@ export const GET = async () =>{
     try {
        await servicesCollection.deleteMany();
        const resp = await servicesCollection.insertMany(services);
-       return Response.json({message: "seeded successfully"})
+       return NextResponse.json({message: "seeded successfully"})
     } catch (error) {
      console.log(error)   
     }
