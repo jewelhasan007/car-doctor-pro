@@ -78,7 +78,6 @@ return user;
 },
 }
 
-
 const handler = NextAuth(authInfo)
 
 export {handler as GET, handler as POST}

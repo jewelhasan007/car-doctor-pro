@@ -5,6 +5,8 @@ import Footer from "@/components/shared/Footer";
 import AuthProvider from "@/services/AuthProvider";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
+import { Suspense } from "react";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -33,7 +35,9 @@ export default function RootLayout({ children }) {
         <AuthProvider>
         <Navbar></Navbar>
         <ToastContainer />
+        <Suspense>
         {children}
+        </Suspense>
         <Footer></Footer>
         </AuthProvider>
       </body>
