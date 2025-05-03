@@ -23,6 +23,8 @@ catch(error){
 
 }
 }
+
+console.log('mongoDB value from car doctor services', db)
 export default connectDB
 
 // id: car-doctor-pro

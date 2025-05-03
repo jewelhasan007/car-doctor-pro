@@ -1,7 +1,9 @@
+
 import axios from 'axios'
 
 export const getServicesDB = async () =>{
     const resp = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}services/api/get-all`);
+    console.log(resp)
     return resp.data;
 }
 

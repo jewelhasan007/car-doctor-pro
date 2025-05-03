@@ -3,9 +3,9 @@ import React from "react";
 
 const About = () => {
   return (
-    <div className="text-slate-400 m-4">
+    <div className="text-slate-400 m-7">
       <div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 h-screen">
+        <div className="grid grid-cols-1 lg:grid-cols-2 m-4">
           <div style={{ position: "relative" }}>
             <Image
               className="rounded"

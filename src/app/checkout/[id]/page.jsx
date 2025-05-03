@@ -14,7 +14,6 @@ const Checkout = ({params}) => {
     const details = await getServicesDetails(params.id);
     console.log('details for checkout',details.services)
     setService(details.services);
-    
 }
     //    const details = await getServicesDetails(params.id);
       const {_id, service_id, price, title, img, facility } = service || {};   
@@ -32,7 +31,7 @@ const Checkout = ({params}) => {
                 serviceId : _id,
                 price : price,
             }
-            const resp = await fetch('process.env.NEXT_PUBLIC_BASE_URL/checkout/api/new-booking', {
+            const resp = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}checkout/api/new-booking`, {
                 method : "POST",
                 body : JSON.stringify(newBooking),
                 headers : {
