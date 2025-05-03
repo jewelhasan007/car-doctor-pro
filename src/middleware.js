@@ -12,9 +12,9 @@ export const middleware = async (request) =>{
       }
 
 
-    if(!token){
-        return NextResponse.redirect(new URL(`/login?redirect=${pathName}`, request.url));
-    }
+//     if(!token){
+//         return NextResponse.redirect(new URL(`/login?redirect=${pathName}`, request.url));
+//     }
      return NextResponse.next();
 }
 

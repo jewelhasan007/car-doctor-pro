@@ -59,7 +59,7 @@ const LogInForm = () => {
             <div className='text-center'>
             <p>Or Sign in with</p>
             <div className='flex justify-center m-4 '>
-            <SocialSignIn></SocialSignIn>
+            {/* <SocialSignIn></SocialSignIn> */}
             
             </div>
             
